@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/highslide.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/public.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/highslide.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ArtDialog/artDialog.source.js?skin=twitter"></script>
+
+    <title>信息详情</title>
+</head>
+<body> 
+    <div class="contener">
+        <div class="list_head_m"><div class="list_head_ml">当前位置：【信息详情】</div></div>
+        <table class="all_cont" width="100%" border="0" cellpadding="5" cellspacing="1">
+            <tr>
+                <td align="right" width="150">文章标题：</td>
+                <td align="left">{$info.title}</td>
+                <td class="inputhelp">文章标题</td>
+            </tr>
+            <tr>
+                <td align="right" width="150">文章短标题：</td>
+                <td align="left">{$info.shorttitle}</td>
+                <td class="inputhelp">文章短标题</td>
+            </tr>
+            <tr>
+                <td align="right" width="150">作者：</td>
+                <td align="left">{$info.writer}</td>
+                <td class="inputhelp">作者</td>
+            </tr>
+            <tr>
+                <td align="right" width="150">来源：</td>
+                <td align="left">{$info.source}</td>
+                <td class="inputhelp">来源</td>
+            </tr>
+            <tr>
+                <td align="right" width="150">关联标签：</td>
+                <td align="left">{$info.tagsname}</td>
+                <td class="inputhelp">关联标签</td>
+            </tr>
+            <tr>
+                <td align="right" width="150">文章内容：</td>
+                <td align="left">{$info.content}</td>
+                <td class="inputhelp">文章内容</td>
+            </tr>
+            <tr>
+                <td align="right" width="150">发布人：</td>
+                <td align="left">{$info.fbname}</td>
+                <td class="inputhelp">发布人</td>
+            </tr>
+            <tr>
+                <td align="right" width="150">发布时间：</td>
+                <td align="left">{$info.addtime|date="Y-m-d H:i",###}</td>
+                <td class="inputhelp">发布时间</td>
+            </tr>
+        </table>
+    </div>
+    <div id="content4" class="message" style="display:none"><textarea style="width:300px;height:80px;" name="message"></textarea></div>
+</body>
+</html>
+<script language="javascript">
+
+    $(function ($) { 
+
+        // 行颜色效果
+        $('.all_cont tr').hover(function () {
+            $(this).children().css('background-color', '#f2f2f2');
+        },function () {
+            $(this).children().css('background-color', '#fff');
+        });
+
+        $('.btn-primary').click(function(){
+
+            var status = $(this).attr('attr');
+            $('input[name=status]').val(status);
+            if (status == '4') {
+                showContent(status);
+                return false;
+            }
+            if (status == '0') {
+                submitStatus(0);
+            }
+        })
+    });
+
+    // 信息提示
+    function showContent(id) {
+
+        var title = new Array();
+        title[4]  = '请输入驳回信息';
+        art.dialog({
+            lock:        true,
+            title:       title[id],
+            drag:        false,
+            background:  '#333', // 背景色
+            opacity:     0.0,    // 透明度
+            ok:          function () {
+
+                // 没有驳回信息
+                if (id == 5 && $('textarea[name=message]').val() == "") {
+                    showMessage('请输入驳回信息');
+                    return false;
+                }
+                submitStatus(id);
+            },
+            cancel: function () {},
+            content:     document.getElementById('content' + id),
+            time:        '100'
+        });
+    }
+
+    // 提交信息
+    function submitStatus(id) {
+
+        // 处理信息状态
+        $.post('saveSubscribe', {id:$('input[name=kid]').val(), status:id, message:$('textarea[name=message]').val(), top:$('.top:checked').val()}, function(data){
+
+            if (data.status == 1) {
+                showMessage('信息更改成功');
+                window.location = "__URL__/shenhe";
+            }
+        }, 'json');
+    }
+
+    //封面图效果
+    hs.graphicsDir = "__PUBLIC__/Images/graphics/";
+    hs.showCredits = false;
+    hs.outlineType = 'rounded-white';
+    hs.restoreTitle = '关闭';
+</script>

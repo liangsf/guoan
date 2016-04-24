@@ -1,0 +1,71 @@
+<tr>
+    <td align="right">附件上传：</td>
+    <td align="left">
+        <ul class="allContentList myFile">
+            <notempty name="info.att_id">
+                <volist name="info.att_id" id="vo">
+                    <li>
+                        <p title="{$vo.attname}">
+                            <a href="/{$vo.url}" target="_blank">{$vo.attname|msubstr=0,32}</a>
+                            <a href="javascript:;" class="fileDelete">删除</a>
+                        </p>
+                        <input name="files[]" type="hidden" value="{$vo.id}" />
+                    </li>
+                </volist>
+            </notempty>
+        </ul>
+        <div class="fileUpload">
+            <input type="button" value="上传附件" onclick="inputFiles('.expertPic');" class="button" />
+            <input type="file" name="picture" id="picture" class="expertPic" onchange="previewImage()" />
+        </div>
+    </td>
+    <td class="inputhelp">附件上传</td>
+</tr>
+<script type="text/javascript" src="__PUBLIC__/Js/ajaxfileupload.js"></script>
+<script type="text/javascript">
+
+    $(function(){
+
+        if ($("#hideFile").val() == 1) {
+            $('.fileUpload,.fileDelete').hide();
+        }
+
+        $(document).on('click', '.fileDelete', function(){
+
+            $(this).parent().parent().remove();
+        })
+    })
+    function inputFiles(name) {
+        return $(name).click();
+    }
+
+    // 异步上传图片
+    function previewImage(url) {
+
+        url = url ? url : '__URL__/fileUpload';
+        $.ajaxFileUpload({
+            url: url,
+            data:{},
+            dataType: 'json',
+            fileElementId: 'picture',
+            success: function (info) {
+
+                if (info.status) {
+
+                    var html = '';
+                    html += '<li>';
+                    html += '    <p title="' + info.data.name + '">' + info.data.name.substring(0,32) + '<a href="javascript:;" class="fileDelete">删除</a></p>';
+                    html += '    <input name="files[]" type="hidden" value="' + info.data.id + '" />';
+                    html += '</li>';
+                    $(html).appendTo('.myFile');
+                } else {
+                    showMessage(info.info);
+                }
+            },
+            error: function (info) {
+                alert('ok')
+                showMessage('图片上传失败');
+            }
+        });
+    }
+</script>

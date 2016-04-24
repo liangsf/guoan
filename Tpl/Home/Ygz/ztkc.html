@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>建筑行业营改增培训、金融行业营改增培训、房地产行业营改增培训、生活服务业营改增培训_神州网企业一站式服务平台</title>
+<meta name="Keywords" content="建筑业营改增培训、房地产营改增培训、营改增培训、营业税改增值税培训、建筑行业营改增、房地产行业营改增、建筑行业营改增培训、金融行业营改增培训、房地产行业营改增培训、生活服务业营改增培训" />
+<meta name="Description" content="神州网针对企业营改增政策，推出营业税改增值税培训，尤其是对建筑业、房地产、金融业、生活服务行业营改增培训，帮助企业从容应对“营改增”。" />
+<link href="__PUBLIC__/Ygz/css/ygz.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/Ygz/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+<!--头部 开始-->
+<include file="ygz_header" />
+<!--头部 结束-->
+<div class="index_cont">
+	<include file="ygz_header_b" />
+	<div class="index_main">
+		
+		<div class="index_main_left fl" style="display: block;">
+			<div class="main_l_top bg_f zt">
+				<div class="message">
+					<h4>“营改增”全国免费巡讲即将开始</h4>
+					<p>2016年3月23日，国家税务总局再出新政，落实5月1日全面实行 “营改增”试点事宜。神州网携手“营改增”财税专家团，将在4月份举行全国巡讲， 旨在帮助广大企业管理者和财税人员学习理解［财税〔2016〕36号］政策的内容， 更快速更精准的了解其关键点、 重点和难点， 让企业能够更顺利地打赢“营改增”收官之战。</p>
+      				<p>您的参与决定了我们努力的方向！如有问题和建议或有想听的课程，只需填写以下内容。</p>
+      				<div class="mes">敬请关注，好课即将登场！</div>
+				</div>
+			</div>
+			<div class="main_l_bottom bg_f">
+				<div class="yuyue_list">
+					<dl>
+						<dt>培训大纲</dt>
+						<dd>1、“营改增”新政疑难解析</dd>
+						<dd>2、营改增对生活服务业会产生哪些影响？</dd>
+						<dd>3、“营改增”新政下，生活服务业的纳税筹划</dd>
+						<dd>4、生活服务业企业“营改增”应对策略</dd>
+					</dl>
+					<dl>
+						<dt>培训对象</dt>
+						<dd>税务总监 / 税务经理 / 税务主管 /税务顾问 / 税务咨询 /</dd>
+						<dd>财务总监/ 财务经理/ 财务主管/财务人员/</dd>
+						<dd>企业主/公司负责人/</dd>
+					</dl>
+					<dl>
+						<dt>培训收益</dt>
+						<dd>1、全面掌握营改增涉税政策导向，了解改革背景把脉行业动向</dd>
+						<dd>2、清楚认识营改增下的行业变化，有针对性的实施应对策略</dd>
+						<dd id="yy">3、通过案例明确新政重点难点，清晰把控变化关键点</dd>
+					</dl>
+					<dl>
+						<dt>预约报名</dt>						
+						<dd>
+							<form method="post" id="tij" name="tij" >
+								<span id="error" style="margin-left:60px;color:#f00;display:none;"></span>
+								<ul>
+									<li><label>姓名：</label><input id="name" name="name" type="text" class="text1" /></li>
+									<li><label>电话：</label><input id="tel" name="tel" type="text" class="text1" /></li>
+									<li><label>邮箱：</label><input id="email" name="email" type="text" class="text1" /></li>
+									<li><label>需求：</label><textarea id="conts" name="conts" id="" cols="30" rows="10"></textarea></li>
+									<li><input id="tijiao" class="btn" type="button" value="立即提交"></li>
+								</ul>								
+							</form>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		
+		<include file="ygz_right" />
+	</div>
+</div>
+<!--脚部 开始-->
+<include file="Public:footer" />
+<!--脚部 结束-->
+
+<script>
+	//返回顶部
+  	$(".window .back_top").click(function(){
+  		$("html, body").animate({scrollTop: 0}, 500);
+  	});
+	//footer
+	$(".nav_title li").bind("click",function(){
+		var idx=$(".nav_title").find("li").index($(this));
+		//alert(idx);
+		$(".nav_title li").removeClass("active");
+		$(this).addClass("active");
+		$(".nav_list").hide();
+		$(".nav_list").eq(idx).show();
+		return false;
+	});
+
+	$("#tijiao").click(function() {
+		var name = $('#name').val();
+		var tel = $('#tel').val();
+		var email = $('#email').val();
+		var conts = $('#conts').val();
+		var telreg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+		var emailreg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
+
+		if(name=="" || tel=="" || email=="" || conts==""){
+			$('#error').show();
+			$('#error').html('*请填写完整信息');
+			return false;
+		}else{
+			$('#error').hide();
+		}
+		if(!telreg.test(tel)){
+			$('#error').show();
+			$('#error').html('*请填写正确手机号码');
+			return false;
+		}else{
+			$('#error').hide();
+		}
+		if(!emailreg.test(email)){
+			$('#error').show();
+			$('#error').html('*请填写正确邮箱');
+			return false;
+		}else{
+			$('#error').hide();
+		}
+		
+        $.ajax({
+            type: "post",
+            url: "__URL__/tijiaoxx",
+            data: $("#tij").serialize(),
+            success: function(data) {
+                if (data.status == 1) {
+                	$('#name').val("");
+                	$('#tel').val("");
+                	$('#email').val("");
+                	$('#conts').val("");
+					$('#error').show();
+					$('#error').html('提交成功,我们的客服会尽快与您联系');
+					setTimeout("$('#error').hide()", 5000 );
+                }
+                if (data.status == 0) {
+					$('#error').show();
+					$('#error').html('*' + data.info);
+                }
+            }
+        })
+   });
+</script>
+</body>
+</html>

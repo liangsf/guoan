@@ -1,0 +1,142 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script  type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.skygqCheckAjaxform.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/Ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/Ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/Ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script language="javascript">
+        $(function ($) { 
+
+            // 行颜色效果
+            $('.all_cont tr').hover(function () {
+                $(this).children().css('background-color', '#f2f2f2');
+            },function () {
+                $(this).children().css('background-color', '#fff');
+            });
+
+            // 表单验证
+            var items_array = [
+                { name:"title",min:2,simple:"服务名称",focusMsg:'3-30个字符'},
+            ];
+
+            $("#info").skygqCheckAjaxForm({
+                items : items_array
+            });
+        });
+    </script>
+    <title>添加{$optname}</title>
+</head>
+<body> 
+    <div class="contener">
+        <div class="list_head_m"><div class="list_head_ml">当前位置：【添加{$optname}】</div></div>
+        <form enctype="multipart/form-data" action="add" method="post" id="info" name="info">
+            <table class="all_cont" width="100%" border="0" cellpadding="5" cellspacing="1">
+                <tr>
+                    <td align="right">标题：</td>
+                    <td align="left">
+                        <input type="text" name="title" id="title" />
+                    </td>
+					<td class="inputhelp">标题</td>
+                </tr>
+				<tr>
+                    <td align="right">短标题：</td>
+                    <td align="left">
+                        <input type="text" name="shorttitle" id="shorttitle" />
+                    </td>
+					<td class="inputhelp">短标题</td>
+                </tr>
+				<tr>
+                    <td align="right">作者：</td>
+                    <td align="left">
+                        <input type="text" name="writer" id="writer" />
+						<select>
+							<option value="选择作者">选择作者</option>
+						</select>
+						<a href="">增加作者</a>
+                    </td>
+					<td class="inputhelp">作者</td>
+                </tr>
+				<tr>
+                    <td align="right">来源：</td>
+                    <td align="left">
+                        <input type="text" name="source" id="source" />
+						<select>
+							<option value="选择作者">选择来源</option>
+						</select>
+						<a href="">增加来源</a>
+                    </td>
+					<td class="inputhelp">来源</td>
+                </tr>
+				<tr>
+                    <td align="right">文章标签：</td>
+                    <td align="left">
+                        <input type="text" name="adlink" id="adlink" />
+                    </td>
+					<td class="inputhelp">文章标签</td>
+                </tr>
+				<tr>
+                    <td align="right">选择标签：</td>
+                    <td align="left">
+                        <input type="text" name="adlink" id="adlink" />
+                    </td>
+					<td class="inputhelp">选择标签</td>
+                </tr>
+				<tr>
+                    <td align="right">文章内容：</td>
+                    <td align="left">
+						<script id="sdjx" name="content" type="text/plain" style="width:630px;height:200px;"></script>
+                    </td>
+					<td class="inputhelp">文章内容</td>
+                </tr>
+				<tr>
+                    <td align="right">关联文档：</td>
+                    <td align="left">
+                        <input type="text" name="att_id" id="att_id" />
+                    </td>
+					<td class="inputhelp">关联文档</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="left">
+                        <input type="submit" class="btn btn-primary btn-small" value="添加" />&nbsp;
+                        <input class="btn btn-primary btn-small" type="reset" value="重置" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+<script>
+$(document).ready(function(){
+	$("#pic_type").bind("click",function(){
+		$("#pic_area").show();
+		$("#html_area").hide();
+	});
+	$("#html_type").bind("click",function(){
+		$("#pic_area").hide();
+		$("#html_area").show();
+	});
+
+});
+</script>
+</html>
+<script language="javascript">
+
+    // 实例化编辑器
+    var sd = UE.getEditor('sdjx', {
+        toolbars: [
+            ['source', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'indent', 'formatmatch', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'fullscreen'],
+            ['fontfamily', 'fontsize', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', 'link', 'unlink', 'anchor', 'simpleupload', 'insertvideo', 'inserttable']
+        ],
+        autoHeightEnabled  : false,
+        enableAutoSave     : false,
+        elementPathEnabled : false,
+        wordCount          : false,
+        width              : '530px'
+    });
+</script>	

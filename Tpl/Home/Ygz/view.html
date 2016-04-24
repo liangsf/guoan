@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$view.title}_神州网企业一站式服务平台</title>
+<meta name="Keywords" content="营业税改增值税解读、营业税改征增值税解读、营改增最新政策解读、营改增最新政策解读、2016年营改增政策解读、营改增政策解读、营改增解读、房地产营改增政策解读、营改增建筑业政策解读、营改增细则解读" />
+<meta name="Description" content="" />
+<link href="__PUBLIC__/Ygz/css/ygz.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/Ygz/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+<!--头部 开始-->
+<include file="ygz_header" />
+<!--头部 结束-->
+<div class="index_cont">
+	<include file="ygz_header_b" />
+	<div class="index_main">
+		
+		<div class="index_main_left fl" style="display: block;">
+			<div class="main_l_bottom bg_f">
+				<div class="news_list">
+					<ul class="list_box border_top content">
+						<li>
+							<dl>
+								<dt class="fl"></dt>
+								<dd>
+									<h2>{$view.title}</h2>
+									<p>{$view.content}</p>
+								</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<include file="ygz_right" />
+	</div>
+</div>
+<!--脚部 开始-->
+<include file="Public:footer" />
+<!--脚部 结束-->
+
+<script>
+	//返回顶部
+  	$(".window .back_top").click(function(){
+  		$("html, body").animate({scrollTop: 0}, 500);
+  	});
+	//footer
+	$(".nav_title li").bind("click",function(){
+		var idx=$(".nav_title").find("li").index($(this));
+		//alert(idx);
+		$(".nav_title li").removeClass("active");
+		$(this).addClass("active");
+		$(".nav_list").hide();
+		$(".nav_list").eq(idx).show();
+		return false;
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script  type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.skygqCheckAjaxform.js"></script>
+    <script language="javascript">
+        $(function ($) { 
+
+            // 行颜色效果
+            $('.all_cont tr').hover(function () {
+                $(this).children().css('background-color', '#f2f2f2');
+            },function () {
+                $(this).children().css('background-color', '#fff');
+            });
+
+            // 表单验证
+            var items_array = [
+                { name:"name",min:2,simple:"标签名",focusMsg:'3-30个字符'},
+            ];
+
+            $("#info").skygqCheckAjaxForm({
+                items : items_array
+            });
+
+            // 下拉选择菜单
+            // $('.funList').change(function(){
+
+            //     var id = $(this).val();
+            //     if (id == 0) {
+            //         $(this).parent().parent().next().hide();
+            //         if ($(this).attr('id') == 'funone') {
+            //             $(this).parent().parent().next().next().hide();
+            //         }
+            //     } else {
+            //         $(this).parent().parent().next().show();
+            //     }
+            //     if ($(this).attr('id') == 'funone') {
+            //         $(this).parent().parent().next().find('select').html('');
+            //         $('#allOption').find('option').each(function(){
+            //             if ($(this).attr('attr') == id || $(this).attr('attr') == 0) {
+            //                 $(this).clone().appendTo('#funtwo');
+            //             }
+            //         })
+            //     }
+            // })
+
+            // $('#funone').change();
+        });
+    </script>
+    <title>添加标签</title>
+</head>
+<body> 
+    <div class="contener">
+        <div class="list_head_m"><div class="list_head_ml">当前位置：【添加标签】</div></div>
+        <form enctype="multipart/form-data" action="add" method="post" id="info" name="info">
+            <table class="all_cont" width="100%" border="0" cellpadding="5" cellspacing="1">
+                <tr>
+                    <td align="right" width="100">选择一级标签：</td>
+                    <td align="left">
+                        <select name="funone" class="funList" id="funone">
+                            <option attr="0" value="0" selected="selected">作为一级标签</option>
+                                <volist name="list" id="vo">
+                                    <eq name="vo.level" value="1">
+                                        <option value="{$vo.id}">{$vo.name}</option>
+                                    </eq>
+                                </volist>
+                        </select>
+                    </td>
+                    <td class="inputhelp">选择一级标签</td>
+                </tr>
+                <tr class="modelTwo" style="display:none;">
+                    <td align="right" width="100">选择二级标签：</td>
+                    <td align="left">
+                        <select name="funtwo" class="funList" id="funtwo">
+                        </select>
+                    </td>
+                    <td class="inputhelp">选择二级标签</td>
+                </tr>
+                
+                <tr>
+                    <td align="right">标签名称：</td>
+                    <td align="left">
+                        <input type="text" name="name" id="name" />
+                    </td>
+                    <td class="inputhelp">标签名称</td>
+                </tr>
+                <tr id="fuwuxs" style="display:none;">
+                    <td align="right">关联服务：</td>
+                    <td align="left" class="tags">
+                        <volist name="serve" id="vo">
+                            <input type="checkbox" name="fw[]" id="y{$vo.id}" value="{$vo.id}" /><label for="g{$vo.id}">{$vo.name}</label>&nbsp;
+                        </volist>
+                    </td>
+                    <td class="inputhelp">业务标签</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="left">
+                        <input type="submit" class="btn btn-primary btn-small" value="添加" />&nbsp;
+                        <input class="btn btn-primary btn-small" type="reset" value="重置" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <select id="allOption" style="display:none;">
+        <option attr="0" value="0" selected="selected">作为二级模块显示</option>
+        <volist name="list" id="vo">
+            <eq name="vo.fun_rank" value="1">
+                <option attr="{$vo.fun_pid}" value="{$vo.fun_id}">{$vo.fun_name}</option>
+            </eq>
+        </volist>
+    </select>
+</body>
+</html>
+<script>
+
+    $("#funone").change(function(){
+            var id = $(this).val();
+            if(id > 1){
+                $('.modelTwo').show();
+
+                var html = "<option attr='0' value='0' selected='selected'>作为二级标签</option>";
+                $.post("__URL__/findFunc", {pid:id}, function(data){
+                    if(data === null){
+                        $("#funtwo").html(html);
+                    }else{
+                        for(var i=0;i<data.length;i++){
+                          html += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                        }
+                        $("#funtwo").html(html);
+                    }
+                    
+                    
+                }, "json");
+                //二级三级标签关联服务显示
+                $('#fuwuxs').show();
+            }else{
+                $('.modelTwo').hide();
+                $('#fuwuxs').hide();
+            }
+            
+        });
+
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script  type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.skygqCheckAjaxform.js"></script>
+    <script language="javascript">
+        $(function ($) { 
+
+            // 行颜色效果
+            $('.all_cont tr').hover(function () {
+                $(this).children().css('background-color', '#f2f2f2');
+            },function () {
+                $(this).children().css('background-color', '#fff');
+            });
+
+            // 表单验证
+            var items_array = [
+                { name:"name",min:2,simple:"标签名称",focusMsg:'3-30个字符'},
+            ];
+
+            $("#info").skygqCheckAjaxForm({
+                items : items_array
+            });
+
+            // 下拉选择菜单
+            // $('.funList').change(function(){
+
+            //     var id = $(this).val();
+            //     if (id == 0) {
+            //         $(this).parent().parent().next().hide();
+            //         if ($(this).attr('id') == 'funone') {
+            //             $(this).parent().parent().next().next().hide();
+            //         }
+            //     } else {
+            //         $(this).parent().parent().next().show();
+            //     }
+            //     $(this).parent().parent().next().find('option').hide();
+            //     $(this).parent().parent().next().find('option').each(function(){
+            //         if ($(this).attr('attr') == id || $(this).attr('attr') == 0) {
+            //             $(this).show();
+            //         }
+            //     })
+            // })
+
+            // 更改位置
+            $('.save').click(function(){
+
+                $('input[name=save]').val(1);
+                $(this).parent().parent().hide();
+                $(this).parent().parent().next().show();
+            })
+
+            $('#funone').change();
+        });
+    </script>
+    <title>编辑标签</title>
+</head>
+<body> 
+    <div class="contener">
+        <div class="list_head_m"><div class="list_head_ml">当前位置：【编辑标签】</div></div>
+        <form enctype="multipart/form-data" action="edit" method="post" id="info" name="info">
+            <table class="all_cont" width="100%" border="0" cellpadding="5" cellspacing="1">
+                
+                <tr>
+                    <td align="right">标签名称：</td>
+                    <td align="left">
+                        <input type="hidden" name="id" value="{$info.id}" />
+                        <input type="text" name="name" id="name" value="{$info.name}" />
+                    </td>
+                    <td class="inputhelp">标签名称</td>
+                </tr>
+                <neq name="info.level" value="1">
+                <tr>
+                    <td align="right">关联服务：</td>
+                    <td align="left">
+                        <volist name="list" id="vo">
+                            <input type="checkbox" name="fuwu[]" id="h{$vo.id}" value="{$vo.id}" <php>if( in_array($vo['id'], $info['s_id'])){echo "checked='checked'";}</php>/>
+                            <label for="h{$vo.id}">{$vo.name}</label>
+                        </volist>
+                    </td>
+                    <td class="inputhelp">关联服务</td>
+                </tr>
+            </neq>
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="left">
+                        <input type="submit" class="btn btn-primary btn-small" value="更新" />&nbsp;
+                        <input class="btn btn-primary btn-small" type="reset" value="重置" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

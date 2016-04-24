@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2016营改增最新政策解读、营业税改征增值税解读、四大行业营改增政策解读_神州网企业一站式服务平台</title>
+<meta name="Keywords" content="营业税改增值税解读、营业税改征增值税解读、营改增最新政策解读、营改增最新政策解读、2016年营改增政策解读、营改增政策解读、营改增解读、房地产营改增政策解读、营改增建筑业政策解读、营改增细则解读" />
+<meta name="Description" content="神州网企业服务平台针对2016年营改增政策进行全面解读，特别是针对四大行业营改增的细则进行解析、实战解读。" />
+<link href="__PUBLIC__/Ygz/css/ygz.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/Ygz/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+<!--头部 开始-->
+<include file="ygz_header" />
+<!--头部 结束-->
+<div class="index_cont">
+	<include file="ygz_header_b" />
+	<div class="index_main">
+		
+		<div class="index_main_left fl" style="display: block;">
+			<div class="main_l_bottom bg_f">
+				<div class="news_list">
+					<ul class="list_box border_top">
+						<volist name="list" id="vo">
+						<li>
+							<dl>
+								<dt class="fl"></dt>
+								<dd>
+									<h2><a href="{$Think.config.SITEURL}ygz/view?id={$vo.e_id}&t=1" target="_blank">{$vo.e_name}</a></h2>
+									<p>{$vo.e_content|strip_tags|mb_substr=0,120,'utf-8'}<a target="_blank" href="{$Think.config.SITEURL}ygz/view?id={$vo.e_id}&t=1" class="xq">[详细]</a></p>
+								</dd>
+							</dl>
+						</li>
+						</volist>
+						
+					</ul>
+					<!--<div class="more">
+						<a href="###">再显示10条内容</a>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		
+		<include file="ygz_right" />
+	</div>
+</div>
+<!--脚部 开始-->
+<include file="Public:footer" />
+<!--脚部 结束-->
+
+<script>
+	//返回顶部
+  	$(".window .back_top").click(function(){
+  		$("html, body").animate({scrollTop: 0}, 500);
+  	});
+	//footer
+	$(".nav_title li").bind("click",function(){
+		var idx=$(".nav_title").find("li").index($(this));
+		//alert(idx);
+		$(".nav_title li").removeClass("active");
+		$(this).addClass("active");
+		$(".nav_list").hide();
+		$(".nav_list").eq(idx).show();
+		return false;
+	});
+</script>
+</body>
+</html>

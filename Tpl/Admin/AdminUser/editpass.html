@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script  type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.skygqCheckAjaxform.js"></script>
+    <script language="javascript">
+        $(function ($) { 
+
+            // 行颜色效果
+            $('.all_cont tr').hover(function () {
+                $(this).children().css('background-color', '#f2f2f2');
+            },function () {
+                $(this).children().css('background-color', '#fff');
+            });
+        });
+    </script>
+    <title>修改密码</title>
+</head>
+<body> 
+    <div class="contener">
+        <div class="list_head_m"><div class="list_head_ml">当前位置：【修改密码】</div></div>
+        <form enctype="multipart/form-data" action="editPass" method="post" id="info" name="info">
+            <table class="all_cont" width="100%" border="0" cellpadding="5" cellspacing="1">
+                <tr>
+                    <td align="right">原密码：</td>
+                    <td align="left">
+                        <input type="password" name="oldpass" id="oldpass" value="" />
+                    </td>
+                    <td class="inputhelp">原密登录码</td>
+                </tr>
+                <tr>
+                    <td align="right">新密码：</td>
+                    <td align="left">
+                        <input type="password" name="newpass" id="newpass" value="" />
+                    </td>
+                    <td class="inputhelp">登录用户名</td>
+                </tr>
+                <tr>
+                    <td align="right">确认密码：</td>
+                    <td align="left">
+                        <input type="password" name="retpass" id="retpass" value="" />
+                    </td>
+                    <td class="inputhelp">登录用户名</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="left">
+                        <input type="submit" class="btn btn-primary btn-small" value="修改" />&nbsp;
+                        <input class="btn btn-primary btn-small" type="reset" value="重置" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

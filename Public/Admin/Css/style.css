@@ -1,0 +1,324 @@
+
+/*--方法列表--*/
+.contener .first {
+    min-height:30px;
+    height:auto;
+    width:100%;
+    border:1px solid #E8E8E8;
+    border-bottom:none;
+}
+.contener .qyinput {
+    float:left;
+    margin-top:10px;
+}
+.contener .first .edit {
+    margin-left:5px;
+    display:none;
+    color:#137cd8;
+}
+.contener .first p {
+    cursor:pointer;
+}
+.contener .first li {
+    min-height:29px;
+    height:auto;
+    line-height:30px;
+    width:100%;
+    border-bottom:1px solid #E8E8E8;
+}
+.contener .second {
+    display:none;
+    height:auto;
+    min-height:1px;
+    width:98%;
+    padding-left:2%;
+}
+.contener .second li {
+    min-height:29px;
+    height:auto;
+    line-height:30px;
+    width:100%;
+    border:none;
+}
+.contener .first .funmore {
+    display:block;
+    float:left;
+    margin:5px 5px 0;
+    height:20px;
+    width:20px;
+    cursor:pointer;
+    background:url(../Images/more.png) no-repeat;
+}
+.contener .first .funmore2 {
+    display:block;
+    float:left;
+    margin:5px 5px 0;
+    height:20px;
+    width:20px;
+    cursor:pointer;
+    background:url(../Images/more2.png) no-repeat;
+}
+
+/*--方法添加--*/
+.conteners .modelTwo {
+    display:none;
+}
+.conteners .modelThree {
+    display:none;
+}
+
+/*--用户组添加 权限编辑--*/
+.conteners .diction {
+    min-height:30px;
+    height:auto;
+    width:100%;
+}
+.conteners .diction h2 {
+    font-size:16px;
+    width:100%;
+}
+.conteners .diction h3 {
+    font-size:14px;
+    width:100%;
+}
+.conteners .diction li {
+    min-height:29px;
+    height:auto;
+    width:100%;
+}
+.conteners .second {
+    display:none;
+    height:auto;
+    min-height:1px;
+    width:88%;
+    padding-left:5%;
+}
+.conteners .second li {
+    min-height:29px;
+    height:auto;
+    width:100%;
+    border:none;
+    padding-top:10px;
+}
+.conteners .secondFloat {
+    float:left;
+}
+.conteners .second li input {
+    float:left;
+}
+
+.conteners .second li label {
+    margin-right:10px;
+    float:left;
+    width:150px;
+    height:30px;
+}
+
+.conteners .adminUsers li {
+    float:left;
+    width:150px;
+    height:25px;
+}
+
+/*--服务商审核--*/
+.contener .message {
+    display:none;
+}
+
+/*--回答问题 弹窗--*/
+.maskLevel { position: fixed; top: 0px; left: 0px; z-index: 1000; background:url(../Images/black_icon.png); width: 100%; height: 100%; display:none;}
+.pup_info { position: fixed; top:50%; left: 50%; margin-left: -250px; margin-top:-250px; z-index: 1001; background: #FFF; width: 500px; height:500px; }
+.pup_info table{
+	width:100%;
+	border-collapse:none;
+}
+.pup_info table td{
+	border:1px solid #ccc;
+}
+.popup_title { width:100%; height:30px; background:#eeeeee; float:left; }
+.popup_title h3 { padding-left:15px; line-height:30px; float:left; }
+.popup_title .closed { padding-right:15px; line-height:30px; cursor:pointer; font-size:12px; color:#666; float:right; }
+.popup_con { width:500px; height:280px; padding:5px 0; overflow-x:hidden; overflow-y:scroll; float:left; }
+.ask_info { width:450px; padding:5px 15px; float:left; }
+.info1_1 { width:50px; height:50px; margin-right:8px; border:1px solid #e4e4e4; overflow:hidden; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; float:left; }
+.info1_1 img { width:50px; height:50px; float:left; }
+.info1_2 { width:240px; height:20px; line-height:18px; overflow:hidden; }
+.info1_2 a { font-size:12px; font-weight:bold; color:#06c; float:left; }
+.info1_3 { text-align:left; font-size:12px; color:#999; height:20px; line-height:18px; overflow:hidden; clear:both; text-indent:60px; }
+.info1_4 { WORD-WRAP: break-word; width:auto; max-width: 370px; padding:5px 9px; border:1px solid #ebebeb; background:#ffc; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; float:left; }
+.info1_4 p { font-size:12px; word-wrap: break-word; line-height:20px; color:#666; }
+.info1_4 img { max-width:100%; float:left; }
+.info1_4 i { width:9px; height:19px; margin-left:-18px; background:url(../Images/grab_08.png) no-repeat; float:left; }
+.answer_info { width:450px; padding:5px 15px; float:right;  }
+.info2_left { width:390px; float:left; }
+.info2_1 { width:390px; font-size:12px; color:#999; height:20px; line-height:18px; overflow:hidden; text-align:right; }
+.info2_2 { width:390px; text-align:right; height:20px; line-height:18px; overflow:hidden; float:right; }
+.info2_2 a { font-size:12px; font-weight:bold; color:#06c; }
+.info2_3 { max-width: 370px; width:auto; padding:5px 9px; border:1px solid #d7f2ff; background:#eefaff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; float:right; }
+.info2_3 p { font-size:12px; word-wrap: break-word; line-height:20px; color:#666; }
+.info2_3 img { max-width:100%; float:left; }
+.info2_3 i { width:9px; height:19px; margin-right: -17px; background:url(../Images/grab_09.png) no-repeat; float:right; }
+.answer_i { width:9px; height:19px; margin-top:25px; margin-left:-1px; background:url(../Images/grab_09.png) no-repeat; float:right; float:left; }
+.info2_4 { width:50px; height:50px; border:1px solid #e4e4e4; overflow:hidden; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; float:right; }
+.info2_4 img { width:50px; height:50px; float:left; }
+.popup_upload { width:100%; border-top:1px solid #d7f2ff; border-bottom:1px solid #d7f2ff; background:#eefaff; float:left; }
+.popup_upload .add_file { width:70px; height:26px; line-height:26px; font-size:12px; color:#06c; text-decoration:underline; text-align:right; background:url(../Images/grab_10.png) no-repeat 10px 5px; position:relative; float:left; overflow:hidden; }
+.popup_upload .add_file:hover { text-decoration:none; }
+.popup_upload .file { width:100%; height:100%; cursor:pointer; left:0; top:0; opacity:0; filter:alpha(opacity:0); position:absolute; }
+.popup_reply { width:100%; position:relative; float:left; }
+.popup_reply .textarea { width:488px; padding:10px 5px; float:left; }
+.popup_reply .sctp { position:absolute; z-index:9999; left:40px; top:18px; font-size:12px; }
+.popup_reply .submit { width:70px; height:25px; background:url(../Images/grab_11.png); border:0; overflow:hidden; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; color:#FFF; cursor:pointer; position: absolute; right: 5px; bottom: -21px; }
+
+/*--咨询商品--*/
+.all_cont .contentList {
+    width:100%;
+    min-height:30px;
+    height:auto;
+}
+.all_cont .contentList li{
+    width:100%;
+    height:30px;
+    line-height:30px;
+}
+.all_cont .pushprice li label{
+    width:90px;
+    float:left;
+    display:block;
+}
+
+/*--微管家发布--*/
+.hyfl label {
+    width: 185px;
+    display: inline-block;
+}
+
+.qy_sz_list label{
+    width: 145px;
+    display: inline-block;
+}
+
+/*--附件上传--*/
+.allContentList {
+    width:500px;
+    height:auto;
+    min-height:30px;
+}
+.allContentList li {
+    height:30px;
+}
+.allContentList p {
+    width:470px;
+    min-height:30px;
+    display:block;
+    float:left;
+    overflow:hidden;
+}
+.allContentList a {
+    padding-left:3px;
+}
+.fileUpload {
+    width:80px;
+    height:30px;
+    overflow:hidden;
+    position:relative;
+}
+.fileUpload .button {
+    width:70px;
+    height:30px;
+    text-align:center;
+    line-height:30px;
+    color:#fff;
+    font-size:14px;
+    border:none;
+    cursor:pointer;
+    background:url('../Images/fileUpload.png') no-repeat;
+}
+.fileUpload .picture {
+    width:70px;
+    height:30px;
+    cursor:pointer;
+    opacity:0;
+}
+
+/*---修改问题属性弹框--*/
+.chooceBox{
+	padding-left:24px;}
+.chooceBox li{
+    position:relative;
+	padding-top:5px;
+	padding-bottom:5px;
+    display:inline-block;
+	}
+.chooceBox li h1{
+	float:left;
+	font-weight:normal;
+	width:134px;
+	font-size:14px;
+	line-height:22px;
+	color:#666666;}
+.chooceBox li p{
+	float:left;
+	overflow:hidden;
+	padding-right:14px;}
+.chooceBox li  .radio{
+	margin-top:3px;
+	float:left;}
+.chooceBox li  i{
+	font-style:normal;
+	float:left;
+	color:#666666;
+	padding-left:10px;}
+.chooceBox li span{
+	float:left;
+	text-indent:6px;
+	font-size:12px;
+	line-height:22px;}
+.chooceBox li b{
+	font-size:12px;
+	position:absolute;
+	top:44px;
+	left:0;
+	color:#ff0000;
+	display:block;
+	font-weight:normal;}
+.chooceBox li dl{
+	margin:0;
+	width:110px;
+	height:22px;
+    float:left;
+}
+.chooceBox li dl .allsz{
+	margin-top:4px;
+	width:13px;
+	height:13px;
+	float:left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

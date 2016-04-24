@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script  type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.skygqCheckAjaxform.js"></script>
+    <title>添加方法</title>
+</head>
+<body> 
+    <div class="contener">
+        <div class="list_head_m"><div class="list_head_ml">当前位置：【添加方法】</div></div>
+        <form enctype="multipart/form-data" action="edit" method="post" id="info" name="info">
+            <table class="all_cont" width="100%" border="0" cellpadding="5" cellspacing="1">
+                <tr>
+                    <td align="right">用户名：</td>
+                    <td align="left">
+                        <input type="hidden" name="id" id="id" value="{$info.adm_id}" />
+                        <input type="text" name="username" id="name" value="{$info.adm_username}" />
+                    </td>
+                    <td class="inputhelp">登录用户名</td>
+                </tr>
+                <tr>
+                    <td align="right">用户密码：</td>
+                    <td align="left">
+                        <input type="text" name="password" id="name" disabled="disabled" />
+                    </td>
+                    <td class="inputhelp">编辑用户组权限</td>
+                </tr>
+                <tr>
+                    <td align="right">用户昵称：</td>
+                    <td align="left">
+                        <input type="text" name="nickname" id="name" value="{$info.adm_nickname}" />
+                    </td>
+                    <td class="inputhelp">添加用户</td>
+                </tr>
+                <tr>
+                    <td align="right" style="vertical-align: top; padding-top:10px;">选择用户区域：</td>
+                    <td align="left">
+                        <form action="del" method="post" id="dos"  onSubmit="return confirm('执行后不可以恢复~确定要执行吗？');">
+                            <ul class="first">
+                                <volist name="areas" id="vo">
+                                    <li>
+                                        <span rel="more" attr="{$vo.qy_dm}" class="funmore"<eq name="vo.qy_dm" value="999999">style="margin-right:5px; background:none;"</eq>></span>
+                                        <if condition="in_array($vo['qy_dm'], $info['adm_qydm'])">
+                                            <input type="checkbox" class="qyinput firstInput" id="{$key}" checked name="sjqydm[]" value="{$vo.qy_dm}" />
+                                            <label for="{$key}">{$vo.qy_mc}&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <neq name="vo.qy_dm" value="999999"><a href="javascript:;" class="allCheck" attr="1">反选</a></neq>
+                                            </label>
+                                        <else />
+                                            <input type="checkbox" class="qyinput firstInput" id="{$key}" name="sjqydm[]" value="{$vo.qy_dm}" />
+                                            <label for="{$key}">{$vo.qy_mc}&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <neq name="vo.qy_dm" value="999999"><a href="javascript:;" class="allCheck" attr="0">全选</a></neq>
+                                            </label>
+                                        </if>
+                                        <ul class="second" style="display:none"></ul>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </form>
+                    </td>
+                    <td class="inputhelp" style="vertical-align: top; padding-top:10px;">选择用户区域</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="left">
+                        <input type="submit" class="btn btn-primary btn-small" value="更新" />&nbsp;
+                        <input class="btn btn-primary btn-small" type="reset" value="重置" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+<script language="javascript">
+    $(function ($) { 
+
+        // 行颜色效果
+        $('.all_cont tr').hover(function () {
+            //$(this).children().css('background-color', '#f2f2f2');
+        },function () {
+            $(this).children().css('background-color', '#fff');
+        });
+
+        // 表单验证
+        var items_array = [
+            { name:"name",min:2,simple:"用户组名",focusMsg:'3-30个字符'},
+        ];
+
+        $("#info").skygqCheckAjaxForm({
+            items : items_array
+        });
+
+        // 省级点击
+        $('.firstInput').click(function(){
+            if ($(this).is(':checked')) {
+                $(this).next().next().find('input').prop('checked', true);
+                $(this).next().find('a').attr('attr', '1').text('反选');
+            } else {
+                $(this).next().next().find('input').prop('checked', false);
+                $(this).next().find('a').attr('attr', '0').text('全选');
+            }
+        })
+
+        // 全选点击
+        $('.allCheck').click(function(){
+            if ($(this).attr('attr') == '0') {
+                $(this).parent().prev().prop('checked', true);
+                $(this).parent().next().find('input').prop('checked', true);
+                $(this).attr('attr', '1').text('反选');
+            } else {
+                $(this).parent().prev().prop('checked', false);
+                $(this).parent().next().find('input').prop('checked', false);
+                $(this).attr('attr', '0').text('全选');
+            }
+        })
+
+        // 获取下级方法
+        $(document).on('click', 'span[rel=more]', function(){
+
+            var more = $(this);
+            var qydm = more.attr('attr');
+            if (qydm == '999999') {
+                return false;
+            }
+            if (more.attr('class') == 'funmore') {
+                more.addClass('funmore2').removeClass('funmore');
+
+                if (more.next().next().next().html()) {
+                    more.next().next().next().slideToggle("slow");
+                    return false;
+                }
+                $.post('__URL__/findQydm', {pid:qydm,uid:$('#id').val()}, function(info){
+                    if (info.status == '1') {
+                        var html  = '';
+                        for (var i=0; i<info.data.length; i++) {
+                            html += '<li>';
+                            if (more.next().is(':checked') || more.next().next().find('a').attr('attr') == '1') {
+                                html += '<input type="checkbox" style="margin-left: 45px;" class="qyinput" id="' + qydm + i + '" checked="checked" name="qydm[]" value="' + info.data[i].qy_dm + '" />';
+                            } else {
+                                html += '<input type="checkbox" style="margin-left: 45px;" class="qyinput" id="' + qydm + i + '" ' + info.data[i].checked + ' name="qydm[]" value="' + info.data[i].qy_dm + '" />';
+                            }
+                            html += '<label for="' + qydm + i + '">' + info.data[i].qy_mc + '</label>';
+                            html += '</li>';
+                        }
+                    }
+                    more.next().next().next().html(html);
+                    more.next().next().next().slideToggle("slow");
+                }, "json");
+            } else {
+                more.addClass('funmore').removeClass('funmore2');
+                more.next().next().next().slideToggle("slow");
+            }
+        })
+    });
+</script>

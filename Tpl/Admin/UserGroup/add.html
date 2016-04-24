@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script  type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.skygqCheckAjaxform.js"></script>
+    <script language="javascript">
+        $(function ($) { 
+
+            // 行颜色效果
+            $('.all_cont tr').hover(function () {
+                $(this).children().css('background-color', '#f2f2f2');
+            },function () {
+                $(this).children().css('background-color', '#fff');
+            });
+
+            // 表单验证
+            var items_array = [
+                { name:"name",min:2,simple:"用户组名",focusMsg:'3-30个字符'},
+            ];
+
+            $("#info").skygqCheckAjaxForm({
+                items : items_array
+            });
+
+            $('.second').show();
+        });
+    </script>
+    <title>添加方法</title>
+</head>
+<body> 
+    <div class="conteners">
+        <div class="list_head_m"><div class="list_head_ml">当前位置：【添加方法】</div></div>
+        <form enctype="multipart/form-data" action="add" method="post" id="info" name="info">
+            <table class="all_cont" width="100%" border="0" cellpadding="5" cellspacing="1">
+                <tr>
+                    <td align="right" width="100">组名：</td>
+                    <td align="left">
+                        <input type="text" name="name" id="name" />
+                    </td>
+                    <td class="inputhelp">用户组名称</td>
+                </tr>
+                <tr>
+                    <td align="right">权限添加：</td>
+                    <td align="left">
+                        <ul class="diction">
+                            <volist name="list" id="vo">
+                                <eq name="vo.fun_rank" value="0">
+                                    <li>
+                                        <h2>
+                                            <input id="one{$key}" type="checkbox" name="dic[]" value="{$vo.fun_id}" />
+                                            <label for="one{$key}">{$vo.fun_name}</label>
+                                        </h2>
+                                        <ul class="second">
+                                            <volist name="list" id="vos">
+                                                <eq name="vos.fun_pid" value="$vo.fun_id">
+                                                    <li>
+                                                        <h3>
+                                                            <input id="two{$key}" type="checkbox" name="dic[]" value="{$vos.fun_id}" />
+                                                            <label for="two{$key}">{$vos.fun_name}</label>
+                                                            </br>
+                                                        </h3>
+                                                        <div class="second secondFloat">
+                                                            <php>$length = 0;</php>
+                                                            <volist name="list" id="voss">
+                                                                <eq name="voss.fun_pid" value="$vos.fun_id">
+                                                                    <input type="checkbox" name="dic[]" value="{$voss.fun_id}" />
+                                                                    <label title="{$voss.fun_url}">{$voss.fun_name}</label>
+                                                                    <php>$length++;</php>
+                                                                    <if condition="$length%3 eq 0">
+                                                                        </br>
+                                                                    </if>
+                                                                </eq>
+                                                            </volist>
+                                                        </div>
+                                                        <div style="clear:both"></div>
+                                                    </li>
+                                                </eq>
+                                            </volist>
+                                        </ul>
+                                    </li>
+                                </eq>
+                            </volist>
+                        </ul>
+                    </td>
+                    <td class="inputhelp">编辑用户组权限</td>
+                </tr>
+                <tr>
+                    <td align="right">用户：</td>
+                    <td align="left">
+                        <ul class="adminUsers">
+                            <volist name="user" id="vo">
+                                <li>
+                                    <input type="checkbox" name="uid[]" id="user{$key}" value="{$vo.adm_id}" />
+                                    <label for="user{$key}">{$vo.adm_nickname}</label>
+                                </li>
+                            </volist>
+                        </ul>
+                    </td>
+                    <td class="inputhelp">添加用户</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="left">
+                        <input type="submit" class="btn btn-primary btn-small" value="添加" />&nbsp;
+                        <input class="btn btn-primary btn-small" type="reset" value="重置" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

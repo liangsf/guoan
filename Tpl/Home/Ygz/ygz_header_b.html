@@ -1,0 +1,47 @@
+<div class="banner">
+	<div class="ban_box">
+		<a href="###" class="logo fl"><img src="__PUBLIC__/Ygz/images/logo.png" alt="" /></a>
+		<div class="ban_text fl">
+			<h1>全国“营改增”之企业全攻略</h1>
+			<p>根据国务院、财政部、国家税务总局统一部署，自2016年5月1日起，全面实施营改增，实施范围为建筑业、<br />房地产业、金融业、生活服务业。至此， “营改增”改革自2012年开始历时5年多，终至“收官之战”。<br />对于企业来说，营改增时代，减负还是加压？如何制定应对策略？如何进行税会处理？</p>
+			<p class="p2">神州网时刻关注企业“营改增”进程，特推出 “营改增”全国免费巡讲活动，助力企业营改增平稳过渡。</p>
+		</div>
+	</div>
+</div>
+<div class="tag_title">
+	<div class="tag_box">
+		<div class="tit_box">				
+			<ul class="tag_list">
+				<li <if condition="(ACTION_NAME eq 'index') OR (MODULE_NAME eq 'ygz') ">class="active"</if>><a href="__APP__/ygz">新闻资讯</a></li>
+				<li <if condition="(ACTION_NAME eq 'ztkc') ">class="active"</if>><a href="__APP__/ygz/ztkc">专题课程</a></li>
+				<li <if condition="(ACTION_NAME eq 'zcfg') ">class="active"</if>><a href="__APP__/ygz/zcfg">政策法规</a></li>
+				<li <if condition="(ACTION_NAME eq 'szjd') ">class="active"</if>><a href="__APP__/ygz/szjd">实战解读</a></li>
+				<li <if condition="(ACTION_NAME eq 'zjdy') ">class="active"</if>><a href="__APP__/ygz/zjdy">专家答疑</a></li>
+			</ul>
+		</div>
+		<div class="fixed">
+			<p class="p1 fl">全国“营改增”之企业全攻略</p>
+			<ul class="tag_list">
+				<li <if condition="(ACTION_NAME eq 'index') OR (MODULE_NAME eq 'ygz') ">class="active"</if>><a href="__APP__/ygz">新闻资讯</a></li>
+				<li <if condition="(ACTION_NAME eq 'ztkc') ">class="active"</if>><a href="__APP__/ygz/ztkc">专题课程</a></li>
+				<li <if condition="(ACTION_NAME eq 'zcfg') ">class="active"</if>><a href="__APP__/ygz/zcfg">政策法规</a></li>
+				<li <if condition="(ACTION_NAME eq 'szjd') ">class="active"</if>><a href="__APP__/ygz/szjd">实战解读</a></li>
+				<li <if condition="(ACTION_NAME eq 'zjdy') ">class="active"</if>><a href="__APP__/ygz/zjdy">专家答疑</a></li>
+			</ul>
+			<div class="btn fr">
+				<a target="_blank" href="{$Think.config.HOMEURL}Ask/tw">专家团咨询</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+    $(window).scroll(function(event){
+      var c = $(document).scrollTop();
+      //alert(c);
+      if(c>=304){
+        $(".fixed").show();
+      }else{
+        $(".fixed").hide();
+      }
+    });
+</script>

@@ -1,0 +1,17 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <title>添加{$optname}</title>
+</head>
+<body> 
+<if condition="$info.type eq 1">
+{$info.html}
+<else />
+<a href="{$info.link}" <if condition="$info.open eq 1">target="_blank"</if> ><img src="/{$info.pic}" width="200" height="100" /></a>
+</if>
+</body>
+</html>

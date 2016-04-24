@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>错误提示</title>
+</head>
+<style type="text/css">
+body{ padding:100px 0;}
+.wait{ width:600px; margin:0 auto;}
+.wait img{ width:100px; height:100px; float:left;}
+.wait p{ width:500px; min-height:60px; height:auto; margin:0; line-height:20px; font-size:16px; font-weight:bold; color:#333; float:left; font-family:"微软雅黑"}
+.wait span{ width:500px; padding:0; margin:0; line-height:20px; font-size:14px; color:#a8a8a8; float:left;}
+</style>
+<body>
+<div class="wait">
+<img src="__PUBLIC__/Images/warning.jpg" />
+<p>{$message}</p>
+<span>页面自动 <a class="actived_orange_icon" id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b></span>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    (function(){
+        var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time == 0) {
+                location.href = href;
+                clearInterval(interval);
+            };
+        }, 2000);
+    })();
+</script>

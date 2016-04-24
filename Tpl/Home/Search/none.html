@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公司注册、工商代办、公司名称/地址变更、工商总局核名、公司注销、代理记账、商标注册/变更、软件著作权、发明专利_神州企业服务平台</title>
+<meta name="Keywords" content="公司注册、工商代办、公司注册、代办营业执照、营业执照代办、无地址注册公司、虚拟公司注册、虚拟注册地址、公司名称/地址变更、工商总局核名、公司注销、代理记账、商标注册/变更、软件著作权、发明专利、企业服务平台、企业服务。" />
+<meta name="Description" content="神州网商学院是国内首家权威的企业服务平台，为中小微企业提供公司注册、工商代办、公司注册、代办营业执照、营业执照代办、无地址注册公司、虚拟公司注册、虚拟注册地址、公司名称/地址变更、工商总局核名、公司注销、代理记账、商标注册/变更、软件著作权、发明专利、企业服务平台、企业服务等企业服务。" />
+<link href="__PUBLIC__/Home/css/sxy_gb.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/Home/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+	$(".submit").on('click',function(){
+		var k = $("#keyword").val();
+		if($.trim(k) == ""){
+			$('#keyword').css('border', '1px solid red');
+			setTimeout("$('#keyword').css('border', '0px')", 2000);
+			return false;
+		}
+
+		document.form1.submit();
+		//document.getElementById('myform').submit();
+	});
+});
+</script>
+</head>
+<body>
+<!--<a class="btqrShow" style="background-image:none;text-align:center;color:#fff;font-size:18px;line-height:66px;text-decoration:none;" href="tencent://message/?uin=527583730">客服</a>-->
+<!--头部 开始-->
+<include file="Public:header" />
+<!--头部 结束-->
+<div class="index_cont">
+	<div class="layout empty">
+		<div class="mbx_nav">
+			<a href="{$Think.config.HOMEURL}">神州网</a>&gt;<a href="/">商学院</a>&gt;<a >搜索</a>
+		</div>
+		<form name="form1" action="" method="GET" >
+		<div class="search_box bg_f bg_f6">
+			<div class="wrap">
+				<div class="search">
+					<div class="sel">
+						<p class="/*hover*/">企业百科</p>
+						<ul class="in_list bg_f">
+							<li>企业百科</li>
+							<!--<li onclick="window.open('http://www.12366.com/Home');">财税学堂</li>-->
+						</ul>
+					</div>
+					<input class="text" name="keyword" id="keyword" type="text" value="" placeholder="请写下您所需常识的关键词">
+					<!--<a href="" class="btn submit">搜索</a>-->
+					<input type="submit" class="btn submit" value="搜索" />
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		</form>
+	</div>
+	<script>
+			$(".sel p").click(function(){
+				$(".sel p").addClass("hover");
+				$(".in_list").show();
+			});
+			$(".in_list li").click(function(){
+			    // $(".sel p").text($(this).text());
+			    $(this).parent(".in_list").hide();
+			    $(".sel p").removeClass("hover");
+			});
+	</script>
+	<div class="empty_icon">
+		<div class="empty_box box2">
+			<p class="icon_a fl"><img src="__PUBLIC__/Home/images/kong2.png" alt="" /></p>
+			<p class="icon_text fl">没有找到与"<i>{$k|mb_substr=0,9,'utf-8'}</i>"相关的内容，建议您调整关键词后再做尝试！</p>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<!--脚部 开始-->
+<include file="Public:footer" />
+<!--脚部 结束-->
+<script>
+	//返回顶部
+  	$(".window .back_top").click(function(){
+  		$("html, body").animate({scrollTop: 0}, 500);
+  	});
+	// 百科 问答
+	/*$(".m_bottom .big_tag li").bind("click",function(){
+		var idx=$(".m_bottom .big_tag").find("li").index($(this));
+		//alert(idx);
+		$(".m_bottom .big_tag li").removeClass("active");
+		$(this).addClass("active");
+		$(".list_box").hide();
+		$(".list_box").eq(idx).show();
+		return false;
+	});*/
+	//footer
+	$(".nav_title li").bind("click",function(){
+		var idx=$(".nav_title").find("li").index($(this));
+		//alert(idx);
+		$(".nav_title li").removeClass("active");
+		$(this).addClass("active");
+		$(".nav_list").hide();
+		$(".nav_list").eq(idx).show();
+		return false;
+	});
+</script>
+</body>
+</html>

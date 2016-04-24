@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script  type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.skygqCheckAjaxform.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/Ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/Ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/Ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/tags.js"></script>
+    <script language="javascript">
+        $(function ($) { 
+
+            // 行颜色效果
+            $('.all_cont tr').hover(function () {
+                $(this).children().css('background-color', '#f2f2f2');
+            },function () {
+                $(this).children().css('background-color', '#fff');
+            });
+
+            // 表单验证
+            var items_array = [
+                { name:"title",min:2,simple:"文章名称",focusMsg:'3-30个字符'},
+            ];
+
+            $("#info").skygqCheckAjaxForm({
+                items : items_array
+            });
+        });
+		function tijiao(){
+			var chktag = $("input[name='tags[]']:checked");
+			if(chktag.length<1){
+				$("#tag_error").css('color', 'red');
+				return false;
+			}
+			return true;
+		}
+    </script>
+    <title>添加{$optname}</title>
+</head>
+<body> 
+    <div class="contener">
+        <div class="list_head_m"><div class="list_head_ml">当前位置：【添加{$optname}】</div></div>
+        <form enctype="multipart/form-data" action="edit" method="post" id="info" name="add" onsubmit="return tijiao();">
+			<input type="hidden" name="id" value="{$info.id}" />
+            <table class="all_cont" width="100%" border="0" cellpadding="5" cellspacing="1">
+                <tr>
+                    <td align="right">标题：</td>
+                    <td align="left">
+                        <input type="text" name="title" value="{$info.title}" id="title" />
+                    </td>
+					<td class="inputhelp">标题</td>
+                </tr>
+				<tr>
+                    <td align="right">短标题：</td>
+                    <td align="left">
+                        <input type="text" name="shorttitle" value="{$info.shorttitle}" id="shorttitle" />
+                    </td>
+					<td class="inputhelp">短标题</td>
+                </tr>
+				<tr>
+                    <td align="right">作者：</td>
+                    <td align="left">
+                        <input type="text" name="writer" value="{$info.writer}" id="writer" />
+						<select name="w_id" onchange="document.add.writer.value=document.add.w_id.value">
+							<option value="选择作者">选择作者</option>
+							<volist name="wts" id="vo">
+							<option value="{$vo.writer}">{$vo.writer}</option>
+							</volist>
+						</select>
+						<a href="__GROUP__/Writer/lists" target="_blank">增加作者</a>
+                    </td>
+					<td class="inputhelp">作者</td>
+                </tr>
+				<tr>
+                    <td align="right">来源：</td>
+                    <td align="left">
+                        <input type="text" name="source" value="{$info.source}" id="source" />
+						<select name="o_id" onchange="document.add.source.value=document.add.o_id.value">
+							<option value="选择作者">选择来源</option>
+							<volist name="ors" id="vo">
+							<option value="{$vo.name}">{$vo.name}</option>
+							</volist>
+						</select>
+						<a href="__GROUP__/Origin/lists" target="_blank">增加来源</a>
+                    </td>
+					<td class="inputhelp">来源</td>
+                </tr>
+				<tr>
+                    <td align="right">文章标签：</td>
+                    <td align="left">
+						一级
+						<select name="t_one" id="tag_f" onchange="gettags(this,'#tag_w')">
+							<option>请选择</option>
+							<volist name="tags" id="vo">
+								<eq name="vo.id" value="$info.t_one">
+								<option selected="selected" value="{$vo.id}">{$vo.name}</option>
+								<else />
+								<option value="{$vo.id}">{$vo.name}</option>
+								</eq>
+							</volist>
+						</select>
+						二级
+						<select name="t_two" id="tag_w" onchange="gettags(this,'#tag_s')">
+							<option>请选择</option>
+							<volist name="tag_two" id="vo">
+								<eq name="vo.id" value="$info.t_two">
+								<option selected="selected" value="{$vo.id}">{$vo.name}</option>
+								<else />
+								<option value="{$vo.id}">{$vo.name}</option>
+								</eq>
+							</volist>
+						</select>
+                    </td>
+					<td class="inputhelp">文章标签</td>
+                </tr>
+				<tr>
+                    <td align="right">选择标签：</td>
+                    <td align="left" id="tag_s">
+                        <volist name="tag_three" id="vo">
+							<php>
+								$tag_arr = explode(',',$info['t_id']);
+								if(in_array($vo['id'],$tag_arr)){
+							</php>
+							<input type="checkbox" name="tags[]" checked="checked" value="{$vo.id}" />{$vo.name}
+							<php>
+							}else{
+							</php>
+							<input type="checkbox" name="tags[]" value="{$vo.id}" />{$vo.name}
+							<php>
+							}
+							</php>
+						</volist>
+                    </td>
+					<td class="inputhelp">选择标签</td>
+                </tr>
+				<tr>
+                    <td align="right">文章内容：</td>
+                    <td align="left">
+						<script id="sdjx" name="content" type="text/plain" style="width:630px;height:200px;">{$info.content}</script>
+                    </td>
+					<td class="inputhelp">文章内容</td>
+                </tr>
+				<include file="Public:uploadFiled" />
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="left">
+                        <input type="submit" class="btn btn-primary btn-small" value="修改" />&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+<script>
+
+</script>
+</html>
+<script language="javascript">
+
+    // 实例化编辑器
+    var sd = UE.getEditor('sdjx', {
+        toolbars: [
+            ['source', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'indent', 'formatmatch', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'fullscreen'],
+            ['fontfamily', 'fontsize', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', 'link', 'unlink', 'anchor', 'simpleupload', 'insertvideo', 'inserttable']
+        ],
+        autoHeightEnabled  : false,
+        enableAutoSave     : false,
+        elementPathEnabled : false,
+        wordCount          : false,
+        width              : '530px'
+    });
+</script>	

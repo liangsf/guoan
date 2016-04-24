@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$info.title}_神州企业问答平台</title>
+<meta name="Keywords" content="{$info.title}_神州企业问答平台" />
+<meta name="Description" content="{$info.title}_神州企业问答平台" />
+<link href="__PUBLIC__/Home/css/sxy_gb.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/Home/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+	var ads_li = $(".menu").children("li");
+	var kd = 100/ads_li.length;
+	ads_li.css('width',kd+"%");
+});
+function search()
+{
+	var k = $("#keyword").val();
+	if($.trim(k) == ""){
+		$('#keyword').css('border', '1px solid red');
+		setTimeout("$('#keyword').css('border', '1px solid #b6c6d6')", 2000);
+		return false;
+	}
+	return true;
+}
+</script>
+</head>
+<body>
+<!--头部 开始-->
+<include file="Public:header" />
+<!--头部 结束-->
+<div class="index_cont">
+	<div class="layout">
+		<div class="mbx_nav">
+			<a href="{$Think.config.HOMEURL}">神州网</a>&gt;<a href="/">商学院</a>&gt;<a  href="/">企业百科</a>&gt;<a  >{$info.title}</a>
+		</div>
+		<div class="content_l fl">
+			<div class="search_a bg_f bg_f6">
+				<div class="logo">
+					<a href="{$Think.config.HOMEURL}" class="logo_szw"></a>
+					<a href="/" class="sxy"></a></li>
+				</div>
+				<form method="get" target="_blank" action="__APP__/search" id="sousuo" onsubmit="return search();">
+					<input class="text" name="keyword" id="keyword" type="text" value="" placeholder="请写下您所需常识的关键词">
+					<a href="javascript:;" onclick="$('#sousuo').submit();" class="btn">搜索</a>
+				</form>
+			</div>
+			<script>
+			    $(window).scroll(function(event){
+			      var c = $(document).scrollTop();
+			      //alert(c);
+			      if(c>=230){
+			        $(".search_a").addClass("searchBar");
+			      }else{
+			        $(".search_a").removeClass("searchBar");
+			      }
+			    });
+			</script>
+			<div class="baike_cont bg_f ask">
+				<div class="wenti_tit">
+					<h2>{$info.title}</h2>
+					<ul class="summary">
+						<li><p><img width="30" height="30" src="__PUBLIC__/Home/images/touxiang.png"></p>{$info.writer}</li>
+						<li>|</li>
+						<li>{$info.addtime|date="Y-m-d H:s",###}</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<div class="wenti_text">
+					<p>{$info.description}</p>
+				</div>
+				<div class="fenxiang fx_right">
+					<span class="fl">分享：</span>
+					<div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more" data-cmd="more"></a></div>
+				<script type="text/javascript">window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+				</div>
+			</div>
+			<div class="baike_cont bg_f answer">
+				<div class="wenti_tit">
+					<h2>回答</h2>
+					<ul class="summary">
+						<li><p><img src="__PUBLIC__/Home/images/touxiang.png"></p>神州网</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<div class="wenti_text">
+					<div class="p_j"><i class="p_j_u"></i>{$info.content}</div>
+				</div>
+			</div>
+			<div class="recommend">
+				<notempty name="serv.one">
+				<div class="message bg_f bg_f6">
+					<p class="tag"><!-- 相关服务 -->
+					<span class="sb_titles">相关服务</span>
+						<if condition="($serv['one']['type'] eq 1)">
+							{$serv['one']['html']}
+						<else />
+							<a href="{$serv['one']['link']}" target="_blank"><img src="/{$serv['one']['pic']}"></a>
+						</if>
+					</p>
+				</div>
+				</notempty>
+				<div class="more bg_f">
+					<dl>
+						<dt>{$tags['tagspname'].name}</dt>
+						<dd><a target="_blank" href="__APP__/Index/?id={$tags['tagsname']['pid']}&types=1">还有 {$tags['counttwoart']}篇　您可能需要了解　>></a></dd>
+					</dl>
+					<dl>
+						<dt>{$tags['tagsname'].name}</dt>
+						<dd><a target="_blank" href="__APP__/Index/?id={$tags['tagsname']['pid']}&threetagsid={$info['t_id']}&types=1">还有 {$tags['countthreeart']}篇　您可能需要了解　>></a></dd>
+					</dl>
+				</div>
+				<notempty name="serv.two">
+				<div class="message bg_f bg_f6">
+					<p class="tag"><!-- 相关活动 -->
+					<span class="sb_titles">相关活动</span>
+						<if condition="($serv['two']['type'] eq 1)">
+							{$serv['two']['html']}
+						<else />
+							<a href="{$serv['two']['link']}" target="_blank"><img src="/{$serv['two']['pic']}"></a>
+						</if>
+					</p>
+				</div>
+				</notempty>
+				<notempty name="xiazai">
+				<div class="more bg_f download">
+					<dl>
+						<dt>相关下载</dt>
+						<volist name="xiazai" id="vo">
+							<dd><a target="_blank" href="{$Think.config.SITEURL}/{$vo.url}">{$vo.attname}</a></dd>
+						</volist>
+					</dl>
+				</div>
+				</notempty>
+				<notempty name="serv.three">
+				<div class="message bg_f bg_f6">
+					<p class="tag"><!-- 相关应用 -->
+					<span class="sb_titles">相关应用</span>
+						<if condition="($serv['three']['type'] eq 1)">
+							{$serv['three']['html']}
+						<else />
+							<a href="{$serv['three']['link']}" target="_blank"><img src="/{$serv['three']['pic']}"></a>
+						</if>
+					</p>
+				</div>
+				</notempty>
+			</div>
+		</div>
+		<div class="content_r fr">
+			<div class="right_top bg_f">
+				<h3>相关推荐</h3>
+				<div class="gg_box">
+					<ul class="pic_list">
+						<volist name="servright" id="vo">
+							<li><a target="_blank" href="{$vo.link}"><img src="/{$vo.pic}" alt="" /></a></li>
+						</volist>
+					</ul>
+					<ul class="line_i">
+						<volist name="servright" id="vo">
+							<li></li>
+						</volist>
+					</ul>
+				</div>
+				<ul class="menu">
+					<li class="active">知识</li>
+					<notempty name="serv.one">
+						<li><a target="_blank" target="_blank" href="{$serv['one']['link']}">服务</a></li>
+					</notempty>
+					<notempty name="serv.two">
+						<li><a target="_blank" href="{$serv['two']['link']}">活动</a></li>
+					</notempty>
+					<notempty name="serv.three">
+						<li><a target="_blank" href="{$serv['three']['link']}">应用</a></li>
+					</notempty>
+				</ul>
+				<div class="tag_box">
+					<a href="###" class="wenda active">问答<i>{$tags['countwd']}</i></a>
+					<a href="###" class="baike">百科 <i>{$tags['countbk']}</i></a>
+					<div class="clear"></div>
+					<p class="arr_top"></p>
+				</div>
+				<div class="tag_list" style="display:block;">
+					<notempty name="tags['wd']">
+						<ul>
+							<volist name="tags.wd" id="vo">
+							<eq name="vo.id" value="$info.id">
+							<li class="active">
+							<else />
+							<li>
+							</eq>
+								<p>
+									<a target="_blank" href="__APP__/question/?id={$vo.id}" title="{$vo.title}">{$vo.title}</a>
+									<span>{$vo.addtime|date="Y-m-d H:i",###}</span>
+								</p>
+							</li>
+							</volist>
+						</ul>
+						<div class="more_btn">
+							<a target="_blank" href="__APP__/Index/?id={$tags['tagsname']['pid']}&threetagsid={$info['t_id']}&types=2">查看更多>></a>
+						</div>
+					</notempty>
+				</div>
+				<div class="tag_list">
+					<notempty name="tags['bk']">
+						<ul class="bai_k">
+							<volist name="tags.bk" id="vo">
+							<eq name="vo.id" value="$info.id">
+							<li class="active">
+							<else />
+							<li>
+							</eq>
+								<p>
+									<a target="_blank" href="__APP__/bitertanol/?id={$vo.id}" title="{$vo.title}">{$vo.title}</a>
+									<span>{$vo.addtime|date="Y-m-d H:i",###}</span>
+								</p>
+							</li>
+							</volist>
+						</ul>
+						<div class="more_btn">
+							<a target="_blank" href="__APP__/Index/?id={$tags['tagsname']['pid']}&threetagsid={$info['t_id']}&types=1">查看更多>></a>
+						</div>
+					</notempty>
+				</div>
+				
+			</div>
+			<div class="right_bottom bg_f">
+				<h3>知识分类</h3>
+				<dl>
+					<dt>{$tags['tagspname'].name}</dt>
+					<volist name="tags.tagsthreename" id="vo">
+						<dd><a target="_blank" href="__APP__/Index/?id={$vo.pid}&threetagsid={$vo.id}&types=2">{$vo.name}</a></dd>
+					</volist>
+				</dl>
+				<div class="more_btn">
+					<a href="__APP__/Index/?id={$tags['tagsname']['pid']}&types=2">查看更多>></a>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--脚部 开始-->
+<include file="Public:footer" />
+<!--脚部 结束-->
+
+<script>
+	//返回顶部
+  	$(".window .back_top").click(function(){
+  		$("html, body").animate({scrollTop: 0}, 500);
+  	});
+	$(".wenti_text a").hover(function test(e){
+		//这里可得到鼠标X坐标
+		var pointX = e.pageX+30+"px";
+		//这里可以得到鼠标Y坐标
+		var pointY = e.pageY+10+"px";
+
+		$(".hover_window").show();
+		$(".hover_window").css({left:pointX,top:pointY});
+		$(".hover_window").hover(function(){
+			$(".hover_window").show();
+		});
+	},function(){
+		$(".hover_window").hide();
+	});
+	// 百科 问答
+	$(".tag_box a").bind("click",function(){
+		var idx=$(".tag_box").find("a").index($(this));
+		//alert(idx);
+		$(".tag_box a").removeClass("active");
+		$(this).addClass("active");
+		$(".tag_list").hide();
+		$(".tag_list").eq(idx).show();
+		return false;
+	});
+	//超两行显示省略号
+	$(".tag_list li p a").each(function(){
+		if($(this).text().length>22){
+			var text=$(this).text().substring(0,22)
+			$(this).text(text+'…');
+		}
+	});
+	//footer
+	$(".nav_title li").bind("click",function(){
+		var idx=$(".nav_title").find("li").index($(this));
+		//alert(idx);
+		$(".nav_title li").removeClass("active");
+		$(this).addClass("active");
+		$(".nav_list").hide();
+		$(".nav_list").eq(idx).show();
+		return false;
+	});
+	
+	//滚动图片
+	var len = $(".line_i > li").length;
+    var index = 0;  //图片序号
+    var adTimer;
+    $(".line_i li").mouseover(function() {
+        index = $(".line_i li").index(this);  //获取鼠标悬浮 li 的index
+        showImg(index);
+    }).eq(0).mouseover();
+    //滑入停止动画，滑出开始动画.
+    $('.gg_box').hover(function() {
+        clearInterval(adTimer);
+    }, function() {
+        adTimer = setInterval(function() {
+            showImg(index)
+            index++;
+            if (index == len) {       //最后一张图片之后，转到第一张
+                index = 0;
+            }
+        }, 10000);
+    }).trigger("mouseleave");
+
+    function showImg(index) {
+        var adWidth = $(".pic_list li").width();
+        $(".pic_list").stop(true, false).animate({
+            "marginLeft": -adWidth * index + "px"    //改变 marginLeft 属性的值达到轮播的效果
+        }, 1000);
+        $(".line_i li").removeClass("active").eq(index).addClass("active");
+    }
+</script>
+</body>
+</html>

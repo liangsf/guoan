@@ -1,0 +1,105 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/back.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script  type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.skygqCheckAjaxform.js"></script>
+    <script language="javascript">
+        $(function ($) { 
+
+            // 行颜色效果
+            $('.all_cont tr').hover(function () {
+                $(this).children().css('background-color', '#f2f2f2');
+            },function () {
+                $(this).children().css('background-color', '#fff');
+            });
+
+            // 表单验证
+            var items_array = [
+                { name:"name",min:2,simple:"广告名称",focusMsg:'3-30个字符'},
+            ];
+
+            $("#info").skygqCheckAjaxForm({
+                items : items_array
+            });
+        });
+    </script>
+    <title>添加{$optname}</title>
+</head>
+<body> 
+    <div class="contener">
+        <div class="list_head_m"><div class="list_head_ml">当前位置：【添加{$optname}】</div></div>
+        <form enctype="multipart/form-data" action="add" method="post" id="info" name="info">
+            <table class="all_cont" width="100%" border="0" cellpadding="5" cellspacing="1">
+                <tr>
+                    <td align="right">广告名称：</td>
+                    <td align="left">
+                        <input type="text" name="name" id="name" />
+                    </td>
+					<td class="inputhelp">广告名称</td>
+                </tr>
+				<tr>
+                    <td align="right">广告地址：</td>
+                    <td align="left">
+                        <input type="text" name="adlink" id="adlink" />
+                    </td>
+					<td class="inputhelp">广告地址</td>
+                </tr>
+				<tr>
+                    <td align="right">展示类型：</td>
+                    <td align="left">
+                        <input type="radio" checked="checked" value="0" name="adtype" id="pic_type" />图片
+                        <input type="radio" name="adtype" value="1" id="html_type" />html代码
+                    </td>
+					<td class="inputhelp">展示类型</td>
+                </tr>
+				<tr id="pic_area">
+                    <td align="right">图片及说明：</td>
+                    <td align="left">
+                        <input type="file" name="pic" id="pic" /><br />					
+                        图片说明：<input type="text" name="content" id="content" />
+                    </td>
+					<td class="inputhelp">图片及说明(图片要求200*100像素)</td>
+                </tr>
+				<tr id="html_area" style="display:none;">
+                    <td align="right">html代码：</td>
+                    <td align="left">
+                        <textarea name="adhtml" cols="70" rows="10"></textarea>
+                    </td>
+					<td class="inputhelp">html代码：</td>
+                </tr>
+				<tr>
+                    <td align="right">打开方式：</td>
+                    <td align="left">
+                        <input type="radio" name="adopen" checked="checked" value="0" id="adopen" />新窗口
+                        <input type="radio" name="adopen" value="1" id="adopen" />本窗口
+                    </td>
+					<td class="inputhelp">打开方式</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="left">
+                        <input type="submit" class="btn btn-primary btn-small" value="添加" />&nbsp;
+                        <input class="btn btn-primary btn-small" type="reset" value="重置" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+<script>
+$(document).ready(function(){
+	$("#pic_type").bind("click",function(){
+		$("#pic_area").show();
+		$("#html_area").hide();
+	});
+	$("#html_type").bind("click",function(){
+		$("#pic_area").hide();
+		$("#html_area").show();
+	});
+
+});
+</script>
+</html>
