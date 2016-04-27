@@ -3,12 +3,12 @@ return array(
 	// '配置项'=>'配置值'
     'APP_DEBUG' =>false,
     'DB_TYPE'   => 'mysql',
-    'DB_HOST'   => 'qdm21684191.my3w.com',
-	'DB_NAME'   => 'qdm21684191_db',
-	'DB_USER'   => 'qdm21684191',
-	'DB_PWD'    => 'qdm21684191',
+    'DB_HOST'   => '',
+	'DB_NAME'   => '',
+	'DB_USER'   => '',
+	'DB_PWD'    => '',
 	'DB_PORT'   => '3306',
-    'DB_PREFIX' => 'ga_',
+    'DB_PREFIX' => '',
 
     'SHOW_PAGE_TRACE' => false,
     'HTML_CACHE_ON'   => false,
